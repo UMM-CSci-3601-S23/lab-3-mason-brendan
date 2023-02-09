@@ -24,22 +24,23 @@ export class TodoListComponent implements OnInit {
 
   getTodosFromServer() {
     this.todoService.getTodos({
-
+      body: this.todoBody,
+      status: this.todoStatus
     }).subscribe(returnedTodos => {
       this.serverFilteredTodos = returnedTodos;
       this.updateFilter();
     }, err => {
       console.error('We couldn\'t get the list of todos; the server might be down :(');
       this.snackBar.open(
-        'Problem contacing server – try again',
+        'Problem contacting server – try again',
         'OK',
-        { duration: 3000});
+        { duration: 3000 });
     });
   }
 
   public updateFilter() {
     this.filteredTodos = this.todoService.filterTodos(
-      this.serverFilteredTodos, { owner: this.todoOwner, category: this.todoCategory, status: this.todoStatus }
+      this.serverFilteredTodos, { owner: this.todoOwner, category: this.todoCategory }
     );
   }
 
