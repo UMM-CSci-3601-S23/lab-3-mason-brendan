@@ -16,24 +16,27 @@
           </mat-form-field>
 
           <mat-form-field class="input-field">
-            <mat-label>Status</mat-label>
-            <input matInput data-test="todoStatusInput" placeholder="Filter by status"
-            [(ngModel)]="todoStatus" (input)="updateFilter()">
-            <mat-hint>Filtered on client</mat-hint>
-          </mat-form-field>
-
-          <mat-form-field class="input-field">
             <mat-label>Category</mat-label>
             <input matInput data-test="todoCategoryInput" placeholder="Filter by category"
             [(ngModel)]="todoCategory" (input)="updateFilter()">
             <mat-hint>Filtered on client</mat-hint>
           </mat-form-field>
+        </div>
+        <div class="flex-row gap-10 flex-wrap">
+          <!-- Examples of filtering on the server -->
+
+          <mat-form-field class="input-field">
+            <mat-label>Status</mat-label>
+            <input matInput data-test="todoStatusInput" type="string" placeholder="Filter by status"
+            [(ngModel)]="todoStatus" (input)="getTodosFromServer()">
+            <mat-hint>Filtered on server</mat-hint>
+          </mat-form-field>
 
           <mat-form-field class="input-field">
             <mat-label>Body</mat-label>
-            <input matInput data-test="todoBodyInput" placeholder="Filter by body"
-            [(ngModel)]="todoBody" (input)="updateFilter()">
-            <mat-hint>Filtered on client</mat-hint>
+            <input matInput data-test="todoBodyInput" type="string" placeholder="Filter by body"
+            [(ngModel)]="todoBody" (input)="getTodosFromServer()">
+            <mat-hint>Filtered on server</mat-hint>
           </mat-form-field>
         </div>
 
@@ -78,7 +81,7 @@
     </div>
   </div>
 
-  <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
+  <!-- Maybe this should be a pop-up instead of just a text messstatus? Not sure. -->
   <ng-template #todosError>
     <div class="flex-1" fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" class="todo-error">
       <mat-error>

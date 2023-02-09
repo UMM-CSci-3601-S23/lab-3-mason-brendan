@@ -49,7 +49,7 @@ export class TodoService {
         httpParams = httpParams.set('status', filters.status);
       }
       if (filters.body) {
-        httpParams = httpParams.set('body', filters.body);
+        httpParams = httpParams.set('contains', filters.body);
       }
       if (filters.category) {
         httpParams = httpParams.set('category', filters.category);
