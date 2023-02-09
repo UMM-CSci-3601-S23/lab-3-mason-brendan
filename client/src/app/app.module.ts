@@ -11,7 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -32,6 +32,7 @@ import { UserCardComponent } from './users/user-card.component';
 import { UserProfileComponent } from './users/user-profile.component';
 import { TodoService } from './todos/todo.service';
 import { TodoListComponent } from './todos/todo-list/todo-list.component';
+import { TodoCardComponent } from './todos/todo-card/todo-card.component';
 const MATERIAL_MODULES: any[] = [
   MatListModule,
   MatButtonModule,
@@ -59,6 +60,7 @@ const MATERIAL_MODULES: any[] = [
     UserCardComponent,
     UserProfileComponent,
     TodoListComponent,
+    TodoCardComponent,
   ],
   imports: [
     BrowserModule,
