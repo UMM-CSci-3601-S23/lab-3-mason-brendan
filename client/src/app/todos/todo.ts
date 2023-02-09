@@ -4,5 +4,6 @@ export interface Todo {
   status: string;
   body: string;
   category: string;
+  avatar?: string;
 }
 
