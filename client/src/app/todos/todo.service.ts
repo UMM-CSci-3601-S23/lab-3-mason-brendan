@@ -36,7 +36,7 @@ export class TodoService {
    *  from the server after a possibly substantial delay (because we're
    *  contacting a remote server over the Internet).
    */
-  getTodos(filters?: { owner?: string; status?: string; body?: string; category?: string }): Observable<Todo[]> {
+  getTodos(filters?: { owner?: string; status?: string; body?: string; category?: string; limit?: number }): Observable<Todo[]> {
     // `HttpParams` is essentially just a map used to hold key-value
     // pairs that are then encoded as "?key1=value1&key2=value2&…" in
     // the URL when we make the call to `.get()` below.
@@ -53,6 +53,9 @@ export class TodoService {
       }
       if (filters.category) {
         httpParams = httpParams.set('category', filters.category);
+      }
+      if (filters.limit) {
+        httpParams = httpParams.set('limit', filters.limit);
       }
     }
     // Send the HTTP GET request with the given URL and parameters.
@@ -85,7 +88,7 @@ export class TodoService {
    * @param filters the map of key-value pairs used for the filtering
    * @returns an array of `Todos` matching the given filters
    */
-  filterTodos(todos: Todo[], filters: {owner?: string; status?: string; body?: string; category?: string}): Todo[] {
+  filterTodos(todos: Todo[], filters: {owner?: string; status?: string; body?: string; category?: string; limit?: number}): Todo[] {
     let filteredTodos = todos;
 
     if (filters.owner) {
@@ -107,7 +110,9 @@ export class TodoService {
       filters.category = filters.category.toLowerCase();
       filteredTodos = filteredTodos.filter(todo => todo.category.toLowerCase().indexOf(filters.category) !== -1);
     }
-
+    if (filters.limit){
+      filteredTodos = filteredTodos.slice(0, filters.limit);
+    }
     return filteredTodos;
   }
 }

@@ -38,7 +38,16 @@
             [(ngModel)]="todoBody" (input)="getTodosFromServer()">
             <mat-hint>Filtered on server</mat-hint>
           </mat-form-field>
+
+          <mat-form-field class="input-field">
+            <mat-label>Limit</mat-label>
+            <input matInput data-test="todosLimit" type="number" placeholder="Set limit"
+            min="0" max="50" [(ngModel)]="limit" (input)="getTodosFromServer()">
+            <mat-hint>Filtered on server</mat-hint>
+          </mat-form-field>
+
         </div>
+
 
         <br>
         <div class="flex-row gap-10 flex-wrap">

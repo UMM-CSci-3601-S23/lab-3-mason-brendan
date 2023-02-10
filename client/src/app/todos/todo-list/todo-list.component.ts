@@ -10,6 +10,7 @@ import { TodoService } from '../todo.service';
 export class TodoListComponent implements OnInit {
   public serverFilteredTodos: Todo[];
   public filteredTodos: Todo[];
+  public limit: number;
 
   public todoID: string;
   public todoBody: string;
@@ -25,7 +26,8 @@ export class TodoListComponent implements OnInit {
   getTodosFromServer() {
     this.todoService.getTodos({
       body: this.todoBody,
-      status: this.todoStatus
+      status: this.todoStatus,
+     // limit: this.limit
     }).subscribe(returnedTodos => {
       this.serverFilteredTodos = returnedTodos;
       this.updateFilter();
@@ -40,7 +42,7 @@ export class TodoListComponent implements OnInit {
 
   public updateFilter() {
     this.filteredTodos = this.todoService.filterTodos(
-      this.serverFilteredTodos, { owner: this.todoOwner, category: this.todoCategory }
+      this.serverFilteredTodos, { owner: this.todoOwner, category: this.todoCategory, limit: this.limit}
     );
   }
 
