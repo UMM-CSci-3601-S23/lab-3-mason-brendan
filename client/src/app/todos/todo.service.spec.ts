@@ -45,6 +45,13 @@ describe('TodoService', () => {
     httpTestingController = TestBed.inject(HttpTestingController);
     // Construct an instance of the service with the mock
     // HTTP client.age
+  });
+
+  afterEach(() => {
+    // After every test, assert that there are no more pending requests.
+    httpTestingController.verify();
+  });
+
   describe('getTodos()', () => {
 
     it('calls `api/todos` when `getTodos()` is called with no parameters', () => {
@@ -156,6 +163,7 @@ describe('TodoService', () => {
       });
     });
   });
+
   describe('getTodoByID()', () => {
     it('calls api/todos/id with the correct ID', () => {
       // We're just picking a Todo "at random" from our little
@@ -233,4 +241,4 @@ describe('TodoService', () => {
       });
     });
   });
-});});
+});
