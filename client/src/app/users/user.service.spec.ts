@@ -38,7 +38,7 @@ describe('UserService', () => {
   let userService: UserService;
   // These are used to mock the HTTP requests so that we (a) don't have to
   // have the server running and (b) we can check exactly which HTTP
-  // requests were made to ensure that we're making the correct requests.
+  // requests were made to ensure that we're makingcontains the correct requests.
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
 

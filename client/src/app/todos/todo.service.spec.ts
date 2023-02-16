@@ -107,7 +107,7 @@ describe('TodoService', () => {
 
         // Specify that (exactly) one request will be made to the specified URL with the age parameter.
         const req = httpTestingController.expectOne(
-          (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('complete')
+          (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('status')
         );
 
         // Check that the request made to that URL was a GET request.
@@ -119,7 +119,7 @@ describe('TodoService', () => {
         req.flush(testTodos);
       });
 
-      it('correctly calls api/todos with filter parameter \'Body\'', () => {
+      it('correctly calls api/todos with filter parameter \'body\'', () => {
         todoService.getTodos({ body: 'UMM' }).subscribe(
           todos => expect(todos).toBe(testTodos)
         );
