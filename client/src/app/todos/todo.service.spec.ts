@@ -45,6 +45,7 @@ describe('TodoService', () => {
     httpTestingController = TestBed.inject(HttpTestingController);
     // Construct an instance of the service with the mock
     // HTTP client.age
+    todoService = new TodoService(httpClient);
   });
 
   afterEach(() => {
