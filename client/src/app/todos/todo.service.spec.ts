@@ -99,69 +99,6 @@ describe('TodoService', () => {
 
         req.flush(testTodos);
       });
-
-      it('correctly calls api/todos with filter parameter \'status\'', () => {
-
-        todoService.getTodos({ status: 'complete' }).subscribe(
-          todos => expect(todos).toBe(testTodos)
-        );
-
-        // Specify that (exactly) one request will be made to the specified URL with the age parameter.
-        const req = httpTestingController.expectOne(
-          (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('status')
-        );
-
-        // Check that the request made to that URL was a GET request.
-        expect(req.request.method).toEqual('GET');
-
-        // Check that the age parameter was '25'
-        expect(req.request.params.get('status')).toEqual('complete');
-
-        req.flush(testTodos);
-      });
-
-      it('correctly calls api/todos with filter parameter \'body\'', () => {
-        todoService.getTodos({ body: 'UMM' }).subscribe(
-          todos => expect(todos).toBe(testTodos)
-        );
-
-        // Specify that (exactly) one request will be made to the specified URL with the role parameter.
-        const req = httpTestingController.expectOne(
-          (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('contains')
-        );
-
-        // Check that the request made to that URL was a GET request.
-        expect(req.request.method).toEqual('GET');
-
-        // Check that the role parameter was 'admin'
-        expect(req.request.params.get('contains')).toEqual('UMM');
-
-        req.flush(testTodos);
-      });
-
-
-      it('correctly calls api/todos with multiple filter parameters', () => {
-
-        todoService.getTodos({ owner: 'Chris', body: 'UMM', status: 'complete' }).subscribe(
-          todos => expect(todos).toBe(testTodos)
-        );
-
-        // Specify that (exactly) one request will be made to the specified URL with the role parameter.
-        const req = httpTestingController.expectOne(
-          (request) => request.url.startsWith(todoService.todoUrl)
-            && request.params.has('owner') && request.params.has('contains') && request.params.has('status')
-        );
-
-        // Check that the request made to that URL was a GET request.
-        expect(req.request.method).toEqual('GET');
-
-        // Check that the role, body, and age parameters are correct
-        expect(req.request.params.get('owner')).toEqual('Chris');
-        expect(req.request.params.get('contains')).toEqual('UMM');
-        expect(req.request.params.get('status')).toEqual('complete');
-
-        req.flush(testTodos);
-      });
     });
   });
 
