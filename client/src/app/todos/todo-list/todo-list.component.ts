@@ -12,12 +12,21 @@ export class TodoListComponent implements OnInit {
   public filteredTodos: Todo[];
   public limit: number;
 
-  public todoID: string;
+
   public todoBody: string;
   public todoStatus: string;
   public todoOwner: string;
   public todoCategory: string;
   public viewType: 'card' | 'list' = 'card';
+
+
+  /**
+   * This constructor injects both an instance of `UserService`
+   * and an instance of `MatSnackBar` into this component.
+   *
+   * @param todoService the `UserService` used to get users from the server
+   * @param snackBar the `MatSnackBar` used to display feedback
+   */
 
   constructor(private todoService: TodoService, private snackBar: MatSnackBar){
 
@@ -25,9 +34,7 @@ export class TodoListComponent implements OnInit {
 
   getTodosFromServer() {
     this.todoService.getTodos({
-      body: this.todoBody,
-      status: this.todoStatus,
-     // limit: this.limit
+      owner: this.todoOwner
     }).subscribe(returnedTodos => {
       this.serverFilteredTodos = returnedTodos;
       this.updateFilter();
@@ -42,8 +49,8 @@ export class TodoListComponent implements OnInit {
 
   public updateFilter() {
     this.filteredTodos = this.todoService.filterTodos(
-      this.serverFilteredTodos, { owner: this.todoOwner, category: this.todoCategory, limit: this.limit}
-    );
+      this.serverFilteredTodos, { owner: this.todoOwner,category: this.todoCategory, body: this.todoBody, status: this.todoStatus}
+    ).slice(0,this.limit);
   }
 
   ngOnInit(): void {
